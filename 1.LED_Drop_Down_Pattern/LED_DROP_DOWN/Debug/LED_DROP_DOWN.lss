@@ -1,0 +1,148 @@
+
+LED_DROP_DOWN.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000007e  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00800060  000000d2  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000000d2  2**0
+                  CONTENTS, READONLY
+  3 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000104  2**2
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000020  00000000  00000000  00000140  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000005ca  00000000  00000000  00000160  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000522  00000000  00000000  0000072a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000024c  00000000  00000000  00000c4c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000024  00000000  00000000  00000e98  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000307  00000000  00000000  00000ebc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000007a  00000000  00000000  000011c3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000010  00000000  00000000  0000123d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	19 c0       	rjmp	.+50     	; 0x36 <__bad_interrupt>
+   4:	18 c0       	rjmp	.+48     	; 0x36 <__bad_interrupt>
+   6:	17 c0       	rjmp	.+46     	; 0x36 <__bad_interrupt>
+   8:	16 c0       	rjmp	.+44     	; 0x36 <__bad_interrupt>
+   a:	15 c0       	rjmp	.+42     	; 0x36 <__bad_interrupt>
+   c:	14 c0       	rjmp	.+40     	; 0x36 <__bad_interrupt>
+   e:	13 c0       	rjmp	.+38     	; 0x36 <__bad_interrupt>
+  10:	12 c0       	rjmp	.+36     	; 0x36 <__bad_interrupt>
+  12:	11 c0       	rjmp	.+34     	; 0x36 <__bad_interrupt>
+  14:	10 c0       	rjmp	.+32     	; 0x36 <__bad_interrupt>
+  16:	0f c0       	rjmp	.+30     	; 0x36 <__bad_interrupt>
+  18:	0e c0       	rjmp	.+28     	; 0x36 <__bad_interrupt>
+  1a:	0d c0       	rjmp	.+26     	; 0x36 <__bad_interrupt>
+  1c:	0c c0       	rjmp	.+24     	; 0x36 <__bad_interrupt>
+  1e:	0b c0       	rjmp	.+22     	; 0x36 <__bad_interrupt>
+  20:	0a c0       	rjmp	.+20     	; 0x36 <__bad_interrupt>
+  22:	09 c0       	rjmp	.+18     	; 0x36 <__bad_interrupt>
+  24:	08 c0       	rjmp	.+16     	; 0x36 <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+  32:	02 d0       	rcall	.+4      	; 0x38 <main>
+  34:	22 c0       	rjmp	.+68     	; 0x7a <_exit>
+
+00000036 <__bad_interrupt>:
+  36:	e4 cf       	rjmp	.-56     	; 0x0 <__vectors>
+
+00000038 <main>:
+//_delay_us(1000);
+
+
+int main(void)
+{
+	DDRD = 0xFF;
+  38:	8f ef       	ldi	r24, 0xFF	; 255
+  3a:	81 bb       	out	0x11, r24	; 17
+//_delay_ms(1000);
+//_delay_us(1000);
+
+
+int main(void)
+{
+  3c:	81 e0       	ldi	r24, 0x01	; 1
+  3e:	90 e0       	ldi	r25, 0x00	; 0
+	DDRD = 0xFF;
+	/* Replace with your application code */
+	while (1){
+		int i;
+		int t1=0b10000000;
+		int t2=0b00000001;
+  40:	41 e0       	ldi	r20, 0x01	; 1
+  42:	50 e0       	ldi	r21, 0x00	; 0
+{
+	DDRD = 0xFF;
+	/* Replace with your application code */
+	while (1){
+		int i;
+		int t1=0b10000000;
+  44:	20 e8       	ldi	r18, 0x80	; 128
+  46:	30 e0       	ldi	r19, 0x00	; 0
+  48:	01 c0       	rjmp	.+2      	; 0x4c <__SREG__+0xd>
+  4a:	01 96       	adiw	r24, 0x01	; 1
+		int t2=0b00000001;
+		for (i=0;i<7;i++){
+			PORTD = t1+t2;
+  4c:	62 2f       	mov	r22, r18
+  4e:	64 0f       	add	r22, r20
+  50:	62 bb       	out	0x12, r22	; 18
+			t1 = t1>>1;
+  52:	35 95       	asr	r19
+  54:	27 95       	ror	r18
+			t2 = t2<<1;
+  56:	44 0f       	add	r20, r20
+  58:	55 1f       	adc	r21, r21
+			if(i!=4)
+  5a:	85 30       	cpi	r24, 0x05	; 5
+  5c:	91 05       	cpc	r25, r1
+  5e:	a9 f3       	breq	.-22     	; 0x4a <__SREG__+0xb>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  60:	6f e9       	ldi	r22, 0x9F	; 159
+  62:	76 e8       	ldi	r23, 0x86	; 134
+  64:	e1 e0       	ldi	r30, 0x01	; 1
+  66:	61 50       	subi	r22, 0x01	; 1
+  68:	70 40       	sbci	r23, 0x00	; 0
+  6a:	e0 40       	sbci	r30, 0x00	; 0
+  6c:	e1 f7       	brne	.-8      	; 0x66 <__SREG__+0x27>
+  6e:	00 c0       	rjmp	.+0      	; 0x70 <__SREG__+0x31>
+  70:	00 00       	nop
+	/* Replace with your application code */
+	while (1){
+		int i;
+		int t1=0b10000000;
+		int t2=0b00000001;
+		for (i=0;i<7;i++){
+  72:	87 30       	cpi	r24, 0x07	; 7
+  74:	91 05       	cpc	r25, r1
+  76:	4c f3       	brlt	.-46     	; 0x4a <__SREG__+0xb>
+  78:	e1 cf       	rjmp	.-62     	; 0x3c <main+0x4>
+
+0000007a <_exit>:
+  7a:	f8 94       	cli
+
+0000007c <__stop_program>:
+  7c:	ff cf       	rjmp	.-2      	; 0x7c <__stop_program>
